@@ -1,0 +1,127 @@
+============================================================
+  INSTRUCTIONS POUR METTRE À JOUR LE REPOSITORY GITHUB
+  java_distribution_app
+============================================================
+
+⚠️  IMPORTANT : Suivez ces étapes DANS L'ORDRE indiqué.
+
+============================================================
+ÉTAPE 1 — SUPPRIMER LE CONTENU ACTUEL DU REPO
+============================================================
+
+1. Allez sur : https://github.com/luisnorte1982/java_distribution_app
+2. Cliquez sur le dossier "Parler_Fran_ais" (c'est le contenu actuel mal structuré)
+3. Pour CHAQUE fichier/dossier à l'intérieur :
+   - Cliquez sur le fichier
+   - Cliquez sur les "..." (trois points) en haut à droite
+   - Sélectionnez "Delete file"
+   - En bas, cliquez "Commit changes"
+
+   OU (méthode plus rapide) :
+   - Allez dans Settings > Danger Zone > Delete this repository
+   - Recréez le repo avec le même nom "java_distribution_app" (Private)
+   - C'est plus rapide si vous avez beaucoup de fichiers à supprimer
+
+============================================================
+ÉTAPE 2 — UPLOADER LE NOUVEAU CONTENU
+============================================================
+
+1. Allez sur : https://github.com/luisnorte1982/java_distribution_app
+2. Cliquez sur "Add file" > "Upload files"
+3. DÉZIPPEZ d'abord le fichier java_distribution_app_DEPLOYMENT.zip
+4. Glissez-déposez TOUS les fichiers et dossiers suivants :
+
+   📄 Fichiers racine :
+      - app.py
+      - requirements.txt
+      - README.md
+      - .gitignore
+      - .env.example
+      - prepare_for_deployment.py
+
+   📁 Dossiers :
+      - config/         (contient __init__.py, settings.py)
+      - utils/          (contient __init__.py, data_processor.py, measures.py, odata_client.py, ui_helpers.py)
+      - pages/          (contient 7 pages + __init__.py)
+      - docs/           (contient 4 guides .md)
+      - .streamlit/     (contient config.toml, secrets.toml.example)
+      - data/           (contient uniquement .gitkeep)
+
+   ⚠️  NOTE : Les fichiers/dossiers commençant par "." (.streamlit, .gitignore, .env.example)
+   peuvent être cachés sur votre ordinateur. Activez "Afficher les fichiers cachés" dans
+   votre explorateur de fichiers avant de faire le drag & drop.
+
+5. Écrivez un message de commit : "Deploy: clean project structure for Streamlit Cloud"
+6. Cliquez "Commit changes"
+
+============================================================
+ÉTAPE 3 — VÉRIFIER LA STRUCTURE
+============================================================
+
+Après l'upload, votre repo devrait avoir cette structure :
+
+java_distribution_app/
+├── .streamlit/
+│   ├── config.toml
+│   └── secrets.toml.example
+├── config/
+│   ├── __init__.py
+│   └── settings.py
+├── data/
+│   └── .gitkeep
+├── docs/
+│   ├── GUIDE_AZURE_AD.md
+│   ├── GUIDE_DEPLOIEMENT.md
+│   ├── GUIDE_GITHUB.md
+│   └── GUIDE_STREAMLIT_CLOUD.md
+├── pages/
+│   ├── __init__.py
+│   ├── 1_📊_DIS_Monthly_External_Rev.py
+│   ├── 2_📈_DIS_YTD_Monthly_External_Rev.py
+│   ├── 3_📍_Rev_SalesP_By_Location.py
+│   ├── 4_🏢_ALL_Monthly_External_Rev.py
+│   ├── 5_👤_Revenue_By_Salesperson.py
+│   ├── 6_🔄_Rev_By_Vendor_YTD.py
+│   └── 7_🎯_Dashboard_Synthese.py
+├── utils/
+│   ├── __init__.py
+│   ├── data_processor.py
+│   ├── measures.py
+│   ├── odata_client.py
+│   └── ui_helpers.py
+├── .env.example
+├── .gitignore
+├── app.py
+├── prepare_for_deployment.py
+├── README.md
+└── requirements.txt
+
+✅  Le fichier "app.py" DOIT être à la RACINE du repo (pas dans un sous-dossier).
+    C'est ce que Streamlit Cloud cherche pour lancer l'application.
+
+============================================================
+ÉTAPE 4 — DÉPLOYER SUR STREAMLIT CLOUD
+============================================================
+
+1. Allez sur : https://share.streamlit.io
+2. Connectez-vous avec votre compte GitHub
+3. Cliquez "New app"
+4. Sélectionnez :
+   - Repository : luisnorte1982/java_distribution_app
+   - Branch : main
+   - Main file path : app.py
+5. Dans "Advanced settings" > "Secrets", collez vos secrets BC
+   (voir docs/GUIDE_STREAMLIT_CLOUD.md pour le format)
+6. Cliquez "Deploy!"
+
+============================================================
+❓ EN CAS DE PROBLÈME
+============================================================
+
+- Si Streamlit Cloud dit "No module named config" :
+  → Vérifiez que config/__init__.py existe dans le repo
+
+- Si "File not found: app.py" :
+  → app.py n'est pas à la racine. Il est peut-être dans un sous-dossier.
+
+- Pour plus d'aide, consultez les guides dans le dossier docs/

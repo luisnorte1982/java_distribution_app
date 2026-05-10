@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Streamlit cache/runtime
+.streamlit/.cache/
+
+# Data files générés localement
+*.parquet
+*.feather
+*.pkl
+
+# Fichiers Excel locaux (mode démo / uploads)
+data/*.xlsx
+!data/.gitkeep
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build / test
+.pytest_cache/
+.coverage
+htmlcov/
